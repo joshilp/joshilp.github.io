@@ -1,0 +1,39 @@
+.navbar {
+    margin: auto auto 3em auto;
+}
+
+.navbar-brand
+    {
+      font-size: xx-large;
+    }
+
+.bg-color {
+    color: #FFFFFF;
+}
+
+
+.container {
+    margin: 3em auto auto auto;
+}
+
+ .row>div{
+      background-color: #ffeeee;
+      background-clip: content-box;
+      min-height: 100px;
+}
+
+ .row {
+      border: 1px #ccc;
+      border-left: 0;
+      border-right: 0;
+}
+
+.row .mb-4 .caption {
+    font-size: xx-large;
+    margin: 1em auto 1em auto;
+}
+
+.hr {
+    color:  #FF0000;
+    margin: 3em auto 3em auto;
+}

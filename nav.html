@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-color">
+    <a class="navbar-brand navbar-brand-centered" href="#"><strong>Josh</strong>Patel</a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="/index.html">Portfolio<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/vfx.html">VFX</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/design.html">Design</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/github.html">Github</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/linkedin.html">LinkedIn</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/contact.html">Contact</a>
+        </li>
+    </ul>
+
+    <script>
+        $(document).ready(function() {
+            $('li.active').removeClass('active');
+            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+        });
+    </script>
+    
+</nav>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Hello, world!</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+       
+        <!--Navigation bar-->
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function() {
+                $("#nav-placeholder").load("nav.html");
+            });
+        </script>
+
+        <!--Content-->
+        <div class="row mb-4">
+            <div class="col-md"><img src="/images/test.jpg" alt="test" class="img-thumbnail"></div>
+            <div class="col-md"><img src="/images/test.jpg" alt="test" class="img-thumbnail"></div>
+            <div class="col-md"><img src="/images/test.jpg" alt="test" class="img-thumbnail"></div>
+        </div>
+        <div class="row mb-4 caption">
+            <div class="col-md">Some test caption.</div>
+            <div class="col-md">Some test caption.</div>
+            <div class="col-md">Some test caption.</div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md"><img src="/images/test.jpg" alt="test" class="img-thumbnail"></div>
+            <div class="col-md"><img src="/images/test.jpg" alt="test" class="img-thumbnail"></div>
+            <div class="col-md"><img src="/images/test.jpg" alt="test" class="img-thumbnail"></div>
+        </div>
+
+    </div>
+</body>
+</html>
