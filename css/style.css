@@ -11,6 +11,10 @@
     color: #FFFFFF;
 }
 
+.navbar-nav {
+    margin: auto 0em 0em auto;
+}
+
 
 .container {
     margin: 3em auto auto auto;
@@ -37,11 +41,15 @@
     margin: auto auto 2em auto;
 }
 
+.logo {
+    max-height: 75px;
+    align-content: center;
+}
+
 .img-thumbnail {
     max-height: 200px;
     align-content: center;
 }
-
 
 /*VFX*/
 .vfx_title {
