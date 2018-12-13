@@ -1,61 +1,77 @@
+/*BODY*/
+.bg-color 
+{
+    color: #FFFFFF;
+}
+
+.container 
+{
+    margin: 3em auto auto auto;
+}
+
+
+/*NAVIGATION*/
 .navbar {
     margin: auto auto 3em auto;
 }
 
 .navbar-brand
-    {
-      font-size: xx-large;
-    }
-
-.bg-color {
-    color: #FFFFFF;
+{
+    font-size: xx-large;
 }
 
-.navbar-nav {
+.navbar-nav 
+{
     margin: auto 0em 0em auto;
 }
 
-
-.container {
-    margin: 3em auto auto auto;
+.logo 
+{
+    max-height: 75px;
+    align-content: center;
 }
 
- .row>div{
+/*THUMBNAILS*/
+.row>div
+{
     background-color: #FFFFFF;
     background-clip: content-box;
     min-height: 100px;
 }
 
- .row {
+.row 
+{
     border: 1px #ccc;
     border-left: 0;
     border-right: 0;
 }
 
-.hr {
+.hr 
+{
     color:  #FF0000;
     margin: 3em auto 3em auto;
 }
 
-.caption {
+.img-thumbnail 
+{
+    max-height: 300px;
+    align-content: center;
+}
+
+.caption 
+{
     margin: auto auto 2em auto;
-}
-
-.logo {
-    max-height: 75px;
-    align-content: center;
-}
-
-.img-thumbnail {
-    max-height: 200px;
-    align-content: center;
+    text-align: left;
 }
 
 /*VFX*/
-.vfx_title {
+.vfx_title 
+{
     font-size: xx-large;
     margin: 2em auto auto auto;
 }
-.vfx_caption {
+
+.vfx_caption 
+{
     margin: 1em auto auto auto;
 }
