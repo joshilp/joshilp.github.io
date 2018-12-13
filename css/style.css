@@ -1,4 +1,10 @@
 /*BODY*/
+
+body
+{
+    background-color: none;
+}
+
 .bg-color 
 {
     color: #FFFFFF;
@@ -31,6 +37,17 @@
     align-content: center;
 }
 
+.nav-item
+{
+    margin: auto auto auto auto;
+}
+
+.fab
+{
+    position: relative;
+    bottom: 0em;
+}
+
 /*THUMBNAILS*/
 .row>div
 {
@@ -54,13 +71,14 @@
 
 .img-thumbnail 
 {
-    max-height: 300px;
+/*    max-height: 300px;*/
+    margin: 1em auto auto auto;
     align-content: center;
 }
 
 .caption 
 {
-    margin: auto auto 2em auto;
+    margin: auto auto 4em auto;
     text-align: left;
 }
 
@@ -74,4 +92,10 @@
 .vfx_caption 
 {
     margin: 1em auto auto auto;
+}
+
+/*FOOTER*/
+.page-footer
+{
+    margin: 5em auto auto auto;
 }
