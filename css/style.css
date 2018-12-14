@@ -5,6 +5,24 @@ body
     background-color: none;
 }
 
+/* unvisited link */
+a
+{
+  color: dodgerblue;
+}
+
+a:hover 
+{
+    color: black;
+    text-decoration: none;
+}
+
+p
+{
+    color: dimgrey;
+    margin: 2px auto 2px auto;
+}
+
 .bg-color 
 {
     color: #FFFFFF;
@@ -15,10 +33,35 @@ body
     margin: 3em auto auto auto;
 }
 
+.title 
+{
+    color: dimgrey;
+    text-align: center;
+    font-size: xx-large;
+    margin: auto auto 2em auto;
+}
+
+.heading
+{
+    margin: 1em auto 0.5em auto;
+}
+
+/*FONTAWESOME*/
+.fab
+{
+    position: relative;
+    bottom: 0em;
+}
+
+.icon-cog
+{
+  color : dodgerblue;
+}
 
 /*NAVIGATION*/
-.navbar {
-    margin: auto auto 3em auto;
+.navbar 
+{
+    margin: auto auto 1em auto;
 }
 
 .navbar-brand
@@ -42,11 +85,11 @@ body
     margin: auto auto auto auto;
 }
 
-.fab
+.nav-hr
 {
-    position: relative;
-    bottom: 0em;
+    margin: auto auto 2em auto;
 }
+
 
 /*THUMBNAILS*/
 .row>div
@@ -71,7 +114,6 @@ body
 
 .img-thumbnail 
 {
-/*    max-height: 300px;*/
     margin: 1em auto auto auto;
     align-content: center;
 }
@@ -82,10 +124,11 @@ body
     text-align: left;
 }
 
+
 /*VFX*/
 .vfx_title 
 {
-    font-size: xx-large;
+    font-size: x-large;
     margin: 2em auto auto auto;
 }
 
@@ -94,8 +137,35 @@ body
     margin: 1em auto auto auto;
 }
 
+
+/*FAQ*/
+.faq-q
+{
+    color: dimgrey;
+    font-size: x-large;
+    margin: 2em auto auto auto;
+}
+
+.faq-a
+{
+    font-size: large;
+    margin: 1em auto auto auto;
+}
+
 /*FOOTER*/
 .page-footer
 {
-    margin: 5em auto auto auto;
+    margin: 5em auto 0em auto;
+    
+}
+
+.footer-title
+{
+    margin: 1em auto 0.5em auto;
+}
+
+.footer-hr
+{
+    width: 200px;
+    margin: auto auto auto 0em;
 }
