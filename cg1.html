@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/monokai-sublime.css">
+
+    <title>CG Step 1: Polygon Drawer</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132190435-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132190435-1');
+
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <!--Navigation Bar-->
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function() {
+                $("#nav-placeholder").load("nav.html");
+            });
+
+        </script>
+
+        <!--Content-->
+        <div class="title">
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/CG1-PolygonDrawer"></a>
+            <p>CG Step 1: Polygon Drawer</p>
+        </div>
+
+
+        <h5 class="heading-section">Start With 3 Different Line Renderers</h5>
+        <hr>
+        <ul>
+            <li>Digital Differential Analyzer &#40;DDA&#41; Line Renderer</li>
+            <li>Bresenham's Line Renderer</li>
+            <li>Antialiased Line Renderer</li>
+        </ul>
+
+
+        <h6 class="heading">DDA Line Renderer</h6>
+        <p>Pseudocode:</p>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/dda-alg.png">
+        </div>
+
+        <p>Code:</p>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/DDALineRenderer.png">
+        </div>
+
+
+
+
+        <h6 class="heading">Bresenham's Line Renderer</h6>
+        <p>Pseudocode:</p>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/bres-alg.png">
+        </div>
+
+        <p>Code:</p>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/BresenhamLineRenderer.png">
+        </div>
+        
+
+
+
+        <h6 class="heading">Antialiased Line Renderer</h6>
+        <p>
+            This is a little more involved. We use an area-sampling algorithm where each pixel (x, y) is considered to be a circle centered at (x, y) in the geometric plane. Circular pixels closely model printers where square pixels closely model most displays.
+        </p>
+        <p>
+            Circular pixels are nice in that, in the middle of a line, the only thing that matters in computing the area of intersection is the distance from the pixel center to the line.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/aa-1.png">
+        </div>
+
+
+        <p>
+            For square pixels, the slope of the line is also involved.
+        </p>
+        <p>
+            One of the first things to do in implementing an area-sampling line drawer is figuring out which pixels to compute. This is done by running a DDA along the line, and at each pixel the DDA would give, instead looking at three or five pixels in the column centered on the DDA pixel.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/aa-2.png">
+        </div>
+
+        <p>
+            At each of these three or five pixels, compute the area of overlap of the pixel (circular) with the unit-width rectangle that represents the line.
+        </p>
+
+        <p>Code:</p>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/AntialiasingLineRenderer.png">
+        </div>
+
+
+
+
+        <h5 class="heading-section">Use DDA To Draw Polygons</h5>
+        <hr>
+
+        <p>
+            To draw a polygon, we can run two DDAs (simultaneously) to ge the left and right pixels on each scan line.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/aa-3.png">
+        </div>
+
+        <p>
+            If the triangle is not right angled, then once we reach the middle vertex, just replace one of the DDA's.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/aa-4.png">
+        </div>
+
+        <p>Pseudocode:</p>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/aa-5.png">
+        </div>
+
+        <p>Code:</p>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/FilledPolygonRenderer.png">
+        </div>
+
+
+
+        <h5 class="heading-section">Test Lines and Polygons</h5>
+        <hr>
+        <p>
+            Now that we can draw lines and polygons, let's test them out by drawing some interesting shapes. We'll use all three line renderers to create starbursts, parallelograms, random liens, filled polygons, and opaque polygons. The top two in each image uses DDA, bottom left uses Bresenham's, and bottom right uses Antialiased.
+        </p>
+
+
+        <h6 class="heading">Starbursts</h6>
+
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/1.jpg">
+        </div>
+
+        <h6 class="heading">Parallelograms</h6>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/2.jpg">
+        </div>
+
+        <h6 class="heading">Random Lines</h6>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/3.jpg">
+        </div>
+
+        <h6 class="heading">Filled Polygons</h6>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/4.jpg">
+        </div>
+
+        <h6 class="heading">Opaque Polygons</h6>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/5.jpg">
+        </div>
+
+
+
+
+        <h5 class="heading-section">Program In Action...</h5>
+        <hr>
+        <div class="image-full">
+            <img src="images/CG1-PolygonDrawer/cg1.gif">
+        </div>
+
+
+        <div>
+            <!--<p class="text-left">&larr; Previous - REMOVE THIS FOR CG1</p>-->
+            <p class="text-right"><a href="/cg2.html">Next - CG Step 2: Adding Z-Depth &rarr;</a></p>
+        </div>
+
+
+        <!--Footer-->
+        <div id="footer-placeholder"></div>
+        <script>
+            $(function() {
+                $("#footer-placeholder").load("footer.html");
+            });
+        </script>
+
+    </div>
+
+
+
+</body>
+
+</html>

@@ -23,6 +23,11 @@ p
     margin: 2px auto 2px auto;
 }
 
+ul
+{
+    color: dimgray;
+}
+
 .bg-color 
 {
     color: #FFFFFF;
@@ -35,16 +40,58 @@ p
 
 .title 
 {
-    color: dimgrey;
+    font-size: x-large;
+    margin: 2em auto 2em auto;
     text-align: center;
-    font-size: xx-large;
-    margin: auto auto 2em auto;
+    color: dimgrey;
+}
+
+.heading-section
+{
+    margin: 2em auto auto auto;
+    color: dimgray;
 }
 
 .heading
 {
     margin: 1em auto 0.5em auto;
+    color: dimgray;
 }
+
+.text-left
+{
+/*    margin-right: 0;*/
+    float: left;
+}
+
+.text-right
+{
+/*    margin-right: 0;*/
+    float: right;
+}
+
+.math
+{
+    text-align: center;
+}
+
+/*MEDIA*/
+.vid
+{
+    align-content: center;
+    margin: auto auto auto auto;
+}
+
+.image-full
+{
+/*    max-width: 100%;*/
+    width: 100%;  
+    height: auto;
+    text-align: center;
+    margin: 2em auto 2em auto;
+}
+
+
 
 /*FONTAWESOME*/
 .fab
@@ -57,6 +104,7 @@ p
 {
   color : dodgerblue;
 }
+
 
 /*NAVIGATION*/
 .navbar 
@@ -116,6 +164,12 @@ p
 {
     margin: 1em auto auto auto;
     align-content: center;
+}
+
+.thumb-heading
+{
+    margin: 1em auto 0.5em auto;
+/*    color: dimgray;*/
 }
 
 .caption 

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/monokai-sublime.css">
+
+    <title>CG Step 2: Adding Z-Depth</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132190435-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132190435-1');
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <!--Navigation Bar-->
+        <div id="nav-placeholder"></div>
+        <script>
+            $(function() {
+                $("#nav-placeholder").load("nav.html");
+            });
+        </script>
+
+        <!--Content-->
+        <div class="title">
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/CG2-ZDepth"></a>
+            <p>CG Step 2: Adding Z-Depth</p>
+        </div>
+
+
+        <h5 class="heading-section">Color Interpolation</h5>
+        <hr>
+        <p>
+            Before we add depth, we need to modify our DDA Line Renderer so that it can interpolate between different colors between vertices.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/DDALineRenderer.png">
+        </div>
+
+        <p>
+            We also need to modify the Filled Polygon Renderer to interpolate beween different colors.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/ColorPolygonRenderer.png">
+        </div>
+        
+        <h5 class="heading-section">Adding Depth</h5>
+        <hr>
+        <p>
+            Now we need to create a Z-Buffer with all values set to -200. This is also known as the clipping plane. Whenever we write a pixel (x, y) with world-space coordinate z, we must first compare z to the Z-Buffer value at x and y. If z > Z-Buffer(x, y) then we write the pixel, and write the z value to the Z-Buffer. Otherwise, we don’t write the pixel.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/ZBufferingDrawable.png">
+        </div>
+        
+        <h5 class="heading-section">Simplifying Things...</h5>
+        <hr>
+        <p>
+            Now that we can draw polygons in depth, drawing 3D shapes such as cubes can become tedious, especially if we want to place them in different places around the screen. We can use .simp files to make things a little easier. Simp files allow you to define shapes by adding coordinates of different face. If you add the right cooridates, as a whole you'll have a simple shape. Here's an example of cube.simp:
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/Simp.png">
+        </div>
+        
+        <p>
+            Now if we want to make something like a line of cubes, we can use another simp file that uses cube.simp to import cubes multiple times and place each in a line. These cubes can also be scaled.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/TranslateSimp.png">
+        </div>
+
+        <p>
+            We're not limited to cubes either. We can create most shapes, such as pyamids, and cones. We'll check them out in the next section.
+        </p>
+
+
+
+
+
+
+        <h5 class="heading-section">Testing Interpolation and Drawing Shapes in Depth</h5>
+        <hr>
+        <p>
+            Now that we can interpolate, let's draw some stuff where vertices of a polygon are of different colors.
+        </p>
+
+
+        <h6 class="heading">Interpolating Lines</h6>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/1.jpg">
+        </div>
+
+        <h6 class="heading">Interpolating Polygons</h6>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/2.jpg">
+        </div>
+        
+        <p>
+            We can also render polygons at different Z-Depths.
+        </p>
+
+        <h6 class="heading">Z-Buffered Polygons</h6>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/3.jpg">
+        </div>
+        
+        <p>
+            Let's use simp files to create interesting shapes and designs.
+        </p>
+
+        <h6 class="heading">Multiple Cubes</h6>
+        
+        <p>
+            Some cubes pass the near clipping plane, meaning you'll see some "holes" in the cube. The cubes rendered towards the far clipping plane disappear into the depth of the screen.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/4.jpg">
+        </div>
+
+        <h6 class="heading">Playing Around With Different Shapes, Translations, Scale, and Depth.</h6>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/5.jpg">
+        </div>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/6.jpg">
+        </div>
+
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/7.jpg">
+        </div>
+
+
+
+
+        <h5 class="heading-section">Program In Action...</h5>
+        <hr>
+        <div class="image-full">
+            <img src="images/CG2-ZDepth/cg2.gif">
+        </div>
+
+
+        <div>
+            <p class="text-left"><a href="/cg1.html">&larr; Previous - CG Step 1: Polygon Drawer</a></p>
+            <p class="text-right"><a href="/cg3.html">Next - CG Step 3: Adding Perspective &rarr;</a></p>
+        </div>
+
+
+        <!--Footer-->
+        <div id="footer-placeholder"></div>
+        <script>
+            $(function() {
+                $("#footer-placeholder").load("footer.html");
+            });
+        </script>
+
+    </div>
+
+
+
+</body>
+
+</html>
