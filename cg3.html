@@ -59,7 +59,7 @@
         <p>
             This file will end up looking something like this:
         </p>
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/obj.png">
         </div>
         <p>
@@ -88,7 +88,7 @@
             For the shading calculation, use perspective-corrected interpolation of camera-space z &#40;csz&#41;. This is done by linearly interpolating 1/csz. In other words, at each vertex, compute z' = 1/csz, then lerp z'. At each pixel, take z' and compute csz = 1/z'.
         </p>
 
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/ColorPolygonRenderer.png">
         </div>
                 
@@ -96,7 +96,7 @@
             We'll also have to make sure that we can set pixels that take into account depth, and the color we want at the far plane.
         </p>
 
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/DepthCueingDrawable.png">
         </div>
 
@@ -121,11 +121,11 @@
             Using wireframes, we can test to see if the objects are perspective-correct.
         </p>
 
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/1.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/2.jpg">
         </div>
         
@@ -134,27 +134,27 @@
             Using polygons, we can test to see if the objects get darker the further away it gets from the screen, knowing that it is already perspective-correct.
         </p>
 
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/3.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/4.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/5.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/6.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/7.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/8.jpg">
         </div>
         
@@ -163,11 +163,11 @@
             Let's grab some .obj files to test something more interesting.
         </p>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/9.jpg">
         </div>
         
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/10.jpg">
         </div>
 
@@ -176,7 +176,7 @@
 
         <h5 class="heading-section">Program In Action...</h5>
         <hr>
-        <div class="image-full">
+        <div class="image-div">
             <img src="images/CG3-Perspective/cg3.gif">
         </div>
 
