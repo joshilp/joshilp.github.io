@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,18 +10,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-    <!-- Highlight.js-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-    </script>
-
     <!-- Custom CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/monokai-sublime.css">
 
-    <title>Josh Patel | Design</title>
+    <title>CG Step 3: Adding Perspective</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132190435-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132190435-1');
+    </script>
 
 </head>
 
@@ -36,19 +45,146 @@
         </script>
 
         <!--Content-->
-        <pre>
-        <code class="python">
-            @requires_authorization
-            def somefunc(param1='', param2=0):
-                r'''A docstring'''
-                if param1 > param2: # interesting
-                    print 'Gre\'ater'
-                return (param2 - param1 + 1 + 0b10l) or None
+        <div class="title">
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/CG3-Perspective"></a>
+            <p>CG Step 3: Adding Perspective</p>
+        </div>
 
-            class SomeClass:
-                pass
-        </code>
-        </pre>
+
+        <h5 class="heading-section">Object Files</h5>
+        <hr>
+        <p>
+            If we want to build something more complicated, such as a Tyrannosaurus Rex, we'll probably use a 3D modelling package such as Maya to create a model. Once the model is created, we can export an object file of the dinosaur: trex.obj
+        </p>
+        <p>
+            This file will end up looking something like this:
+        </p>
+        <div class="image-full">
+            <img src="images/CG3-Perspective/obj.png">
+        </div>
+        <p>
+            You'll see v, vn, vt, and f, which all represent vertice, vertice normal, vertice texture, and polygon face, respectively. The number to the right are the xyz coordinates. For the polygon face, the numbers are the space and normal coordinates. 
+        </p>
+        <p>
+            The files are very long, and this image only represent a small fraction of what you would see.
+        </p>
+        
+        
+        
+        
+        
+        <h5 class="heading-section">Perspective-Correct Interpolation </h5>
+        <hr>
+        <p>
+            When adding perspective, it's important to see that objects that fall into depth have a sort of gradient to them. In other words, objects further away slowly disappear or become darker. We need to interpolate this. This is done with Lighting and Shading calculations. Then when vertices are moved into camera space, the interpolated polygon will look like it falls into depth properly.
+        </p>
+        
+        <h6 class="heading">Lighting Calculation</h6>
+        <p>
+            For the lighting calculation, multiply the ambient lighting by the object color at each vertex &#40;using the vertex color&#41; and then linearly interpolate. This produces the same effect as lerping the color and then mulitplying the lerped color by the ambient lighting at each pixel, but is less expensive.
+        </p>
+        <h6 class="heading">Shading Calculation</h6>
+        <p>
+            For the shading calculation, use perspective-corrected interpolation of camera-space z &#40;csz&#41;. This is done by linearly interpolating 1/csz. In other words, at each vertex, compute z' = 1/csz, then lerp z'. At each pixel, take z' and compute csz = 1/z'.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG3-Perspective/ColorPolygonRenderer.png">
+        </div>
+                
+        <p>
+            We'll also have to make sure that we can set pixels that take into account depth, and the color we want at the far plane.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG3-Perspective/DepthCueingDrawable.png">
+        </div>
+
+
+        
+
+
+
+
+
+
+
+        <h5 class="heading-section">Testing Ambience and Perspective</h5>
+        <hr>
+        <p>
+            Now that we can interpolate in camera space z, let's make some interesting objects.
+        </p>
+
+
+        <h6 class="heading">Testing Perspective with Wireframe Objects</h6>
+        <p>
+            Using wireframes, we can test to see if the objects are perspective-correct.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG3-Perspective/1.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/2.jpg">
+        </div>
+        
+        <h6 class="heading">Testing Perspective with Filled Polygons</h6>
+        <p>
+            Using polygons, we can test to see if the objects get darker the further away it gets from the screen, knowing that it is already perspective-correct.
+        </p>
+
+        <div class="image-full">
+            <img src="images/CG3-Perspective/3.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/4.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/5.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/6.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/7.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/8.jpg">
+        </div>
+        
+        <h6 class="heading">Testing with .obj Files</h6>
+        <p>
+            Let's grab some .obj files to test something more interesting.
+        </p>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/9.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG3-Perspective/10.jpg">
+        </div>
+
+
+
+
+        <h5 class="heading-section">Program In Action...</h5>
+        <hr>
+        <div class="image-full">
+            <img src="images/CG3-Perspective/cg3.gif">
+        </div>
+
+
+        <div class="prev-next">
+            <p class="text-left"><a href="/cg2.html"><strong>&larr; Previous - CG Step 2: Adding Z-Depth</strong></a></p>
+            <p class="text-right"><a href="/cg4.html"><strong>Next - CG Step 4: Lighting &amp; Rendering &rarr;</strong></a></p>
+        </div>
 
 
         <!--Footer-->
@@ -64,4 +200,5 @@
 
 
 </body>
+
 </html>

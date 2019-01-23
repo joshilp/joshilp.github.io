@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,18 +10,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-    <!-- Highlight.js-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-    </script>
-
     <!-- Custom CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/monokai-sublime.css">
 
-    <title>Josh Patel | Design</title>
+    <title>CG Step 4: Lighting &amp; Rendering</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132190435-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132190435-1');
+    </script>
 
 </head>
 
@@ -36,19 +45,221 @@
         </script>
 
         <!--Content-->
-        <pre>
-        <code class="python">
-            @requires_authorization
-            def somefunc(param1='', param2=0):
-                r'''A docstring'''
-                if param1 > param2: # interesting
-                    print 'Gre\'ater'
-                return (param2 - param1 + 1 + 0b10l) or None
+        <div class="title">
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/CG4-LightingRendering"></a>
+            <p>CG Step 4: Lighting &amp; Rendering</p>
+        </div>
 
-            class SomeClass:
-                pass
-        </code>
-        </pre>
+
+        <h5 class="heading-section">Adding Commands</h5>
+        <hr>
+        <p>
+            The .simp files we read in will now contain new information, including light color, surface color, specular exponent, scalar, and shading style.
+        </p>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/simp.png">
+        </div>
+        <p>
+            We can use these values to calculate lighting.
+        </p>
+
+
+        <h5 class="heading-section">Lighting Calculation</h5>
+        <hr>
+        <p class="math">
+            I<sub>&lambda;</sub> &#61; k<sub>d&lambda;</sub> I<sub>a&lambda;</sub> &#43; &sum;<sub>i</sub> I<sub>i&lambda;</sub> f<sub>att,i</sub> &#40; k<sub>d&lambda;</sub> &#40; N &#8226; L<sub>t</sub> &#41; &#43; k<sub>s</sub> &#40; V &#8226; R<sub>t</sub> &#41; <sup>p</sup> &#41;
+        </p>
+        <p>
+            Where,
+        </p>
+
+        <table class="tables">
+            <tr>
+                <th>Variable</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td class="table-var">I<sub>a&lambda;</sub></td>
+                <td>The ambient light intensity.</td>
+            </tr>
+            <tr>
+                <td class="table-var">I<sub>i&lambda;</sub></td>
+                <td>The intensity of light i.</td>
+            </tr>
+            <tr>
+                <td class="table-var">f<sub>att,i</sub> &#61; 1 &frasl; &#40; A<sub>i</sub> &#43; B<sub>i</sub> d<sub>i</sub> &#41;</td>
+                <td>A<sub>i</sub> and B<sub>i</sub> are the attenuation constants from the light command for light i; d<sub>i</sub> is the camera-space distance from the light to the surface.</td>
+            </tr>
+            <tr>
+                <td class="table-var">&lambda;</td>
+                <td>this subscript denotes an RGB vector</td>
+            </tr>
+            <tr>
+                <td class="table-var">L<sub>t</sub> and R<sub>t</sub></td>
+                <td>These denote the vector from the point being illuminated to light i, and that same vector reflected through the normal vector N, respectively.</td>
+            </tr>
+            <tr>
+                <td class="table-var">N</td>
+                <td>Normal vector to surface at the point being illuminated.</td>
+            </tr>
+            <tr>
+                <td class="table-var">V</td>
+                <td>View vector (from eye to point being illuminated).</td>
+            </tr>
+            <tr>
+                <td class="table-var">k<sub>d&lambda;</sub></td>
+                <td>Color (diffuse reflection coefficient) of object. From surface command or from vertex colors.</td>
+            </tr>
+            <tr>
+                <td class="table-var">k<sub>s</sub> , p</td>
+                <td>Specular reflection coefficient and exponent. From surface command.</td>
+            </tr>
+            <tr>
+                <td class="table-var">&sum;<sub>i</sub></td>
+                <td>The sum is over all light sources encountered so far in the scene.</td>
+            </tr>
+        </table>
+
+
+
+        <h5 class="heading-section">Shading Style</h5>
+        <hr>
+        <p>
+            There are types of rendering styles:
+        </p>
+        <ul>
+            <li>Flat</li>
+            <li>Gouraud</li>
+            <li>Phong</li>
+        </ul>
+
+        <h6 class="heading">Flat</h6>
+        <p>
+            In flat shading, we averages the vertices of a polygon to find a center point on the polyogn. If there are normals present at the vertices, then the renormalized average of these normals is used for the normal for the lighting calculation:
+        </p>
+        <p class="math">
+            N &#61; normalize&#40;&#40; N<sub>1</sub> &#43; N<sub>2</sub> &#43; N<sub>3</sub> &#41; &frasl; 3 &#41;
+        </p>
+        <p>
+            Otherwise the face normal is used:
+        </p>
+        <p class="math">
+            N &#61; normalize&#40;&#40; V<sub>2</sub> &#45; V<sub>1</sub> &#41; x &#40; V<sub>3</sub> &#45; V<sub>1</sub> &#41;&#41;
+        </p>
+        <p>
+            Then using the center point with the normal, we apply the lighting model to get a lighting value (RGB vector). This value is used as the lighting-calculation color for all pixels in the polygon.
+        </p>
+
+        <h6 class="heading">Gouraud</h6>
+        <p>
+            For gouraud shading, we find a normal at each vertex of a polygon. If the vertex is from an obj file and has a specified normal, then we'll use that. Otherwise we use the face normal at every vertex. Then at each vertex we calculate the lighting value using the lighting equation above. Then blerp these lighting values across the polygon, using the blerped value as the pixel value at each pixel.
+        </p>
+
+        <h6 class="heading">Phong</h6>
+        <p>
+            For phong shading, first we find a normal at each vertex like we did with gouraud shading. Next we blerp the normals, the camera space points, and color &#40;if necessary&#41; across the polygon. At each pixel, used the blerped point, renormalized normal, and color&#40;kd&#41; in the lighting calculation to obtain a pixel value for the pixel.
+        </p>
+
+        <h6 class="heading">Let's check it out in code...</h6>
+
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/lighting.png">
+        </div>
+
+
+        <h5 class="heading-section">Testing Lighting and Shading with Different Render Styles</h5>
+        <hr>
+
+        <h6 class="heading">Flat</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/1.jpg">
+        </div>
+        
+        <h6 class="heading">Gouraud</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/2.jpg">
+        </div>
+        
+        <h6 class="heading">Phong</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/3.jpg">
+        </div>
+        
+        <h6 class="heading">Flat</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/4.jpg">
+        </div>
+        
+        <h6 class="heading">Gouraud</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/5.jpg">
+        </div>
+        
+        <h6 class="heading">Phong</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/6.jpg">
+        </div>
+        
+        <h6 class="heading">Flat</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/7.jpg">
+        </div>
+        
+        <h6 class="heading">Gouraud</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/8.jpg">
+        </div>
+        
+        <h6 class="heading">Phong</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/9.jpg">
+        </div>
+        
+        <h6 class="heading">More Objects Rendered With Phong Shading</h6>
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/10.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/11.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/12.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/13.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/14.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/15.jpg">
+        </div>
+        
+        <div class="image-full">
+            <img src="images/CG4-LightingRendering/16.jpg">
+        </div>
+
+
+
+
+
+
+
+        <h5 class="heading-section">Program In Action...</h5>
+        <hr>
+        <div class="image-full">
+            <img src="images//CG4-LightingRendering/cg4.gif">
+        </div>
+
+
+        <div class="prev-next">
+            <p class="text-left"><a href="/cg3.html"><strong>&larr; Previous - CG Step 3: Adding Perspective</strong></a></p>
+        </div>
 
 
         <!--Footer-->
@@ -64,4 +275,5 @@
 
 
 </body>
+
 </html>

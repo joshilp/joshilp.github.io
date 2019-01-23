@@ -20,7 +20,7 @@ a:hover
 p
 {
     color: dimgrey;
-    margin: 2px auto 2px auto;
+    margin: 1em auto auto auto;
 }
 
 ul
@@ -73,6 +73,12 @@ ul
 .math
 {
     text-align: center;
+    font-size: 1.2em;
+}
+
+.prev-next
+{
+    height: 2em;
 }
 
 /*MEDIA*/
@@ -207,6 +213,11 @@ ul
 }
 
 /*FOOTER*/
+#footer-placeholder
+{
+    margin: auto auto auto auto;
+}
+
 .page-footer
 {
     margin: 5em auto 0em auto;
@@ -220,6 +231,36 @@ ul
 
 .footer-hr
 {
-    width: 200px;
-    margin: auto auto auto 0em;
+    margin: 5em auto auto auto;
+}
+
+.footer-link
+{
+    margin: auto auto 5px auto;
+}
+
+
+/*TABLES*/
+table 
+{
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em auto 1em auto;
+}
+
+th
+{
+    margin: 1em auto 0.5em auto;
+    color: dimgray;
+}
+
+tr {
+    border-bottom: 1px dotted #ccc;
+}
+
+.table-var
+{
+    max-width:100%;
+    white-space:nowrap;
+    padding-right: 2em;
 }
