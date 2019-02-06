@@ -23,6 +23,12 @@ p
     margin: 1em auto auto auto;
 }
 
+.nospace
+{
+    color: dimgrey;
+    margin: 0.5em auto 0.5em auto;
+}
+
 ul
 {
     color: dimgray;
@@ -186,6 +192,13 @@ img
 {
     margin: auto auto 4em auto;
     text-align: left;
+}
+
+.fig-caption 
+{
+    margin: auto auto 4em auto;
+    text-align: center;
+    font-size: 12px;
 }
 
 

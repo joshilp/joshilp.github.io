@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,18 +10,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-    <!-- Highlight.js-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-    </script>
-
     <!-- Custom CSS-->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/monokai-sublime.css">
 
-    <title>Josh Patel | Design</title>
+    <title>Inverse Kinematics</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132190435-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132190435-1');
+    </script>
 
 </head>
 
@@ -36,19 +45,49 @@
         </script>
 
         <!--Content-->
-        <pre>
-        <code class="python">
-            @requires_authorization
-            def somefunc(param1='', param2=0):
-                r'''A docstring'''
-                if param1 > param2: # interesting
-                    print 'Gre\'ater'
-                return (param2 - param1 + 1 + 0b10l) or None
+        <div class="title">
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/CA2-InverseKinematics"></a>
+            <p class="nospace">Inverse Kinematics</p>
+        </div>
 
-            class SomeClass:
-                pass
-        </code>
-        </pre>
+
+        <h5 class="heading-section">Adding Commands</h5>
+        <hr>
+        <p>
+            The .simp files we read in will now contain new information, including light color, surface color, specular exponent, scalar, and shading style.
+        </p>
+        <div class="image-div">
+            <img src="images/CG4-LightingRendering/simp.png">
+        </div>
+        <p>
+            We can use these values to calculate lighting.
+        </p>
+
+
+        <h6 class="heading">Let's check it out in code...</h6>
+
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/ccd.png">
+        </div>
+        
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/jacobian.png">
+        </div>
+        
+
+
+        <h5 class="heading-section">Inverse Kinematics In Action...</h5>
+        <hr>
+        
+        <h6 class="heading">CCD Mode</h6>
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/ccd.gif">
+        </div>
+        
+        <h6 class="heading">Jacobian Mode</h6>
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/jacobian.gif">
+        </div>
 
 
         <!--Footer-->
@@ -64,4 +103,5 @@
 
 
 </body>
+
 </html>
