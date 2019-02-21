@@ -17,22 +17,25 @@ a:hover
     text-decoration: none;
 }
 
-p
+p, ul, ol
 {
-    color: dimgrey;
-    margin: 1em auto auto auto;
+    color: dimgray;
+    margin: 0.5em auto 0.5em auto;
 }
 
 .nospace
 {
-    color: dimgrey;
+    color: dimgray;
     margin: 0.5em auto 0.5em auto;
 }
 
-ul
+/*
+ul, ol
 {
     color: dimgray;
+    margin: 1em auto auto 1em;
 }
+*/
 
 .bg-color 
 {
@@ -44,7 +47,7 @@ ul
     margin: 3em auto auto auto;
 }
 
-.title 
+.title
 {
     font-size: x-large;
     margin: 2em auto 2em auto;
@@ -80,6 +83,7 @@ ul
 {
     text-align: center;
     font-size: 1.2em;
+    margin: 0.5em auto 0.5em auto;
 }
 
 .prev-next

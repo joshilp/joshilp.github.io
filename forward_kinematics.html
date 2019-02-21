@@ -54,7 +54,7 @@
         <h5 class="heading-section">Rotations</h5>
         <hr>
         <p>
-            Before we dive into Forward Kinematics, we need to know about rotations. Typically we want to rotate objects are x, y, and z axis.
+            Before we dive into Forward Kinematics, we need to know about rotations. Typically we want to rotate objects around the x, y, and z axis.
         </p>
         <div class="image-div">
             <img src="images/CA1-ForwardKinematics/rotations.png">
@@ -63,17 +63,142 @@
             Source: <a href="https://stackoverflow.com/questions/1251828/calculate-rotations-to-look-at-a-3d-point">https://stackoverflow.com/questions/1251828/calculate-rotations-to-look-at-a-3d-point</a>
         </p>
         <p>
-            We can use these values to calculate lighting.
+            This is rotation using Euler/Axis angles, and is very intuitive when wanting to rotate an object around an axis. The problem with this method is the <a href="https://en.wikipedia.org/wiki/Gimbal_lock">Gimbal lock</a>, where we lose a degree of freedom when rotating a single axis 90 degrees.
         </p>
 
+        <p>Gimbal Lock:</p>
+        <div class="image-div">
+            <img src="images/CA1-ForwardKinematics/gimballock.gif">
+        </div>
 
+        <p class="fig-caption">
+            Source: <a href="https://computergraphics.stackexchange.com/questions/4436/how-to-achieve-gimbal-lock-with-euler-angles">https://computergraphics.stackexchange.com/questions/4436/how-to-achieve-gimbal-lock-with-euler-angles</a>
+        </p>
+        
+        <p>
+            Instead of using Euler/Axis angles, we can use Quaternions to rotate an object.
+        </p>
+        
+        <h5 class="heading-section">Quaternions</h5>
+        <hr>
+        <p>
+            <a href="https://en.wikipedia.org/wiki/Quaternion">Quaternions</a> are a number system that extends complex numbers:
+        </p>
+        
+        <p class="math">
+            z &#61; a &#43; ib, where i<sup>2</sup> = -1
+        </p>
+        
+        <p>
+            Let's define q as a quaternion:
+        </p>
+        
+        <p class="math">
+            q &#61; w &#43; ix &#43; jy &#43; kz
+        </p>
+        
+        <p class="math">
+            q &#61; &#40;w, x, y, z&#41; = &#40;w, v&#41;
+        </p>
+        
+        <p class="math">
+            where i<sup>2</sup> = j<sup>2</sup> = k<sup>2</sup> = ijk = -1, and ij = k, jk = i, ki = j
+        </p>
+        
+        <p class="math">
+            and, w<sup>2</sup> &#43; x<sup>2</sup> &#43; y<sup>2</sup> &#43; z<sup>2</sup> = 1
+        </p>
+        
+        <p>
+            Let's define w and v:
+        </p>
+        
+        <p class="math">
+            w = cos&#40;&theta;/2&#41;,
+        </p>
+        <p class="math">
+            v = <strong>k</strong> sin&#40;&theta;/2&#41;
+        </p>
+        
+        <p>
+            Now to rotate a vector p into p', multiply p by a quaternion q that is converted to a rotation matrix R<sub>q</sub>, so that:
+        </p>
+        
+        <p class="math">
+            p' = R<sub>q</sub>p
+        </p>
+        
+        <p>
+            where,
+        </p>
+        
+        <div class="image-div">
+            <img src="images/CA1-ForwardKinematics/Rq.png">
+        </div>
+        
+        <p>
+            We can also do this direcly, first by creating a "fake" quaternion q<sub>p</sub>
+        </p>
+        
+        <p class="math">
+            q<sub>p</sub> = &#40;0, x, y, z&#41;
+        </p>
+        
+        <p class="math">
+            q'<sub>p</sub> = q &#9679; q<sub>p</sub> &#9679; q<sup>-1</sup>
+        </p>
+        
+        <p class="math">
+            where, q'<sub>p</sub> is &#40;0, p'&#41;
+        </p>
+        
+        <p>
+            So to rotate by q<sub>1</sub> then q<sub>2</sub>, we do q<sub>2</sub> &#9679; q<sub>1</sub>
+        </p>
+        
+        <p class="math">
+            q<sub>2</sub> &#9679; &#40;q<sub>1</sub> &#9679; q<sub>p</sub> &#9679; q<sub>1</sub><sup>-1</sup>&#41; &#9679; q<sub>2</sub><sup>-1</sup>
+        </p>
+        
+        <p class="math">
+            = &#40;q<sub>2</sub> &#9679; q<sub>1</sub>&#41; &#9679; q<sub>p</sub> &#9679; &#40;q<sub>1</sub><sup>-1</sup> &#9679; q<sub>2</sub><sup>-1</sup>&#41;
+        </p>
+        
+        <p class="math">
+            = &#40;q<sub>2</sub> &#9679; q<sub>1</sub>&#41; &#9679; q<sub>p</sub> &#9679; &#40;q<sub>2</sub> &#9679; q<sub>1</sub>&#41;<sup>-1</sup>
+        </p>
+        
+        <p>
+            Quaternions are confusing, so it might be helpful watching <a href="https://www.youtube.com/watch?v=d4EgbgTm0Bg&t=7s">3Blue1Brown's</a> video on the topic.
+        </p>
+        
+        
+        <h5 class="heading-section">Forward Kinematics</h5>
+        <hr>
+        <p>
+            Forward Kinematics works by computing the locations of end effectors, such as hands and feet, when given joint angles.
+        </p>
+        <p>
+            This is a depth-first traversal of a skeletal rig, as a recursive function.
+        </p>
+        <p>
+            Three steps:
+        </p>
+        <ul>
+            <li>Update joints own global position from parent's global orientation and own local position</li>
+            <li>Copute local rotation</li>
+            <li>Compute own global orientation by compositing local rotation with parent's global orientation</li>
+        </ul>
+        
+        <p>
+            Basically, we'll traverse through each joint and update the rotatation to it's new orientation per frame.
+        </p>
+        
         <h6 class="heading">Let's check it out in code...</h6>
 
         <div class="image-div">
-            <img src="images/CA1-ForwardKinematics//ForwardKinematics.png">
+            <img src="images/CA1-ForwardKinematics/ForwardKinematics.png">
         </div>
-        
-
 
         <h5 class="heading-section">Forward Kinematics In Action...</h5>
         <hr>

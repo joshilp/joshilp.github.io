@@ -50,45 +50,143 @@
             <p class="nospace">Inverse Kinematics</p>
         </div>
 
-
-        <h5 class="heading-section">Adding Commands</h5>
+        <h5 class="heading-section">Inverse Kinematics</h5>
         <hr>
         <p>
-            The .simp files we read in will now contain new information, including light color, surface color, specular exponent, scalar, and shading style.
+            Inverse Kinematics works by computing joint angles when given desired location of end effectors, such as hands and feet.
         </p>
-        <div class="image-div">
-            <img src="images/CG4-LightingRendering/simp.png">
-        </div>
         <p>
-            We can use these values to calculate lighting.
+            In other words, we can compute the angles of each joint given a target.
         </p>
+        <p>
+            There are numerous moethods to do this. We'll focus on two:
+        </p>
+        <ol>
+            <li>Cyclic Coordinate Descent</li>
+            <li>Jacobian</li>
+        </ol>
 
+        <h5 class="heading-section">Cyclic Coordinate Descent (CCD)</h5>
+        <hr>
+        
+        <p>
+            Done by rotating the end-effector as close as possible to the target
+            iteratively from joint-to-joint.
+        </p>
+        
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/ccd_math.png">
+        </div>
+        
+        <p>
+            First we need to grab the vector of the endeffector and call it P<sub>e</sub>.
+            
+            We'll also need to get the parent of the endeffector and call it c. From c we'll also grab it's vector and call it P<sub>c</sub>. 
 
+            Finally we'll grab the vector of the target and call it P<sub>t</sub>.
+        </p>
+        
+        <p>
+            Then we'll get the two vectors between P<sub>e</sub> and P<sub>c</sub>, and P<sub>t</sub> and P<sub>c</sub>, then we'll cross product these to get a new vector r.</p>
+        
+        <p>
+            From vector r we can use x, y, and z to create a quaternion q.
+        </p>
+        
+        <p>
+            To create a new quaternion, we'll grab the old quaternion from c and multiply it with q. This new quaternion then replaces the old one in c.
+        </p>
+        
         <h6 class="heading">Let's check it out in code...</h6>
 
         <div class="image-div">
             <img src="images/CA2-InverseKinematics/ccd.png">
         </div>
         
-        <div class="image-div">
-            <img src="images/CA2-InverseKinematics/jacobian.png">
-        </div>
+        <h6 class="heading">Here's what CCD looks like on a rig's right arm:</h6>
         
-
-
-        <h5 class="heading-section">Inverse Kinematics In Action...</h5>
-        <hr>
+        <p>
+            Full disclaimer, this rig doesn't lock rotation past a certain angle, which is why the joints in the arm can rotate in the wrong direction.
+        </p>
         
-        <h6 class="heading">CCD Mode</h6>
         <div class="image-div">
             <img src="images/CA2-InverseKinematics/ccd.gif">
         </div>
         
-        <h6 class="heading">Jacobian Mode</h6>
+        <p>
+            This is easy to implement, but it doesn't look very natural.
+        </p>
+        
+
+        <h5 class="heading-section">Jacobian</h5>
+        <hr>
+        
+        <p>
+            To update joints using the Jacobian method, we start with this formula:
+        </p>
+        
+        <p class="math">
+            p = J &#8226; &theta;
+        </p>
+        
+        <p>
+            We'll rerrage it, because we need &theta;
+        </p>
+        
+        <p class="math">
+            &theta; = J<sup>t</sup> &#8226; p
+        </p>
+        
+        <p>
+            Here's an overview of what things look like:
+        </p>
+        
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/computing_jacobian.png">
+        </div>
+        
+        <p>
+            First we get a normalized vector from the target to the endeffector, and call it p.
+
+            Then we'll build r by calculating the distance from the rotating joint to the endeffector.
+
+            Now that we have a and r, we can cross product each (x,y,z) vector and add it to matrix J.
+        </p>
+
+        <p>
+            To invert J, we'll use the pseudo-inverse method:
+        </p>
+        
+        <p class="math">
+            J<sup>&#43;</sup> = &#40;J<sup>T</sup> J + &lambda;<sup>2</sup> I&#41;<sup>-1</sup> J<sup>T</sup>
+        </p>
+        <p class="math">
+            J<sup>&#43;</sup> = J<sup>T</sup>&#40; J J<sup>T</sup> + &lambda;<sup>2</sup> I&#41;<sup>-1</sup>
+        </p>
+        
+        <p>
+            Now we can use J inverse and P to calculate &theta;. We can also use J transposed. Update the quaternion for each joint and we're set.
+        </p>
+        
+        
+        
+        
+        <h6 class="heading">Let's check it out in code...</h6>
+        
+        
+        <div class="image-div">
+            <img src="images/CA2-InverseKinematics/jacobian.png">
+        </div>
+        
+        <h6 class="heading">Here's what Jacobian looks like on a rig's right arm:</h6>
+        
         <div class="image-div">
             <img src="images/CA2-InverseKinematics/jacobian.gif">
         </div>
-
+        
+        <p>
+            Other than the backwards rotations, Jacobian looks more natural looking than CCD.
+        </p>
 
         <!--Footer-->
         <div id="footer-placeholder"></div>

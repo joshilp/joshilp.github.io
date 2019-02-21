@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/monokai-sublime.css">
 
-    <title>CG Step 4: Lighting &amp; Rendering</title>
+    <title>Nutrisnap</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 
@@ -46,35 +46,131 @@
 
         <!--Content-->
         <div class="title">
-            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/CG4-LightingRendering"></a>
-            <p>CG Step 4: Lighting &amp; Rendering</p>
-        </div>
-
-
-
-        <div>
-            <img class="images" src="images/CG4-LightingRendering/lighting.png">
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/NutriSnap"></a>
+            <p class="nospace">Nutrisnap</p>
         </div>
         
         
-        <h6 class="heading">Flat</h6>
-        <div>
-            <img class="images" src="images/CG4-LightingRendering/1.jpg">
+        
+        <h5 class="heading-section">Contributors</h5>
+        <hr>
+        <ul>
+            <li>Joshil Patel</li>
+            <li>Sonal Unadkat</li>
+            <li>Sid Agrawal</li>
+        </ul>
+        
+
+        <h5 class="heading-section">Problem</h5>
+        <hr>
+        <p>
+            The goal of this project is to utilize transfer learning and retrain Google’s Inception V3 model to accurately classify images of food and produce the corresponding nutritional information. The idea behind this project is to modify TensorFlow's retrain.py by adding multiple activation layers before the final soft-max layer, in hopes of increasing accuracy and stability of the model.
+        </p>
+
+        <h5 class="heading-section">Data: Gathering &amp; Cleaning</h5>
+        <hr>
+        
+        <p>
+            We obtained our data using Kaggle and a Google Chrome plugin called FatKun. These sources provided us with our database of 100,000 photos of different types of food, sorted in their corresponding classifications (101 classes, 1000 images/ class). We created a python script move_images.py that will automatically sort through our images, dividing it into test and train
+            directories.
+        </p>
+        
+        <p>
+            Once our image data was ready, transformations and distortions were applied to our images in TensorFlow’s retrain.py script. Some of the transformations performed are flipping, scaling, cropping, and modifying brightness. Using this sort of data augmentation is a great way of increasing the training data and variation. In a real-world scenario, not all pictures are taken perfectly, for example some pictures are blurry and/or have different angles. The benefit of performing these transformations is that it can help emulate a real-world scenario by adding
+            variations of our data set and provide a more natural learning set for our mode.
+        </p>
+        
+        
+        <h5 class="heading-section">Techniques &amp; Manipulation</h5>
+        <hr>
+        <p>
+            One of the goals of this project is to utilize transfer learning and retrain Google’s Inception V3 neural network. To accomplish this, we used TensorFlow retrain.py and label_image.py scripts. The retrain.py script allowed us to train the final SoftMax layer to our specific food classes, while label_image.py allows us to feed our model an image and test its results. We later imported the logic of label_image.py to be able to not only test the model but to also work with our Nutritionix Client to obtain nutritional information. 
+        </p>
+        
+        
+        <h6 class="heading">Retrain.py</h6>
+        
+        <p>
+            Training image recognition models requires large computing power, thus transfer learning is used to drastically reduce the amount of required computing power.
+        </p> 
+        <p>
+            For food image classification, features would have to be created to do analysis for items such as edge detection, or color histograms, etc. The problem comes from a wide variance in image features. This is where Convolutional Neural Networks (CNN) are used, which are generalized to account for variance. CNN’s require large computing power, but Google provides a pre-trained CNN model called Inception V3, which was pre-trained model using one thousand classes. Access to this model is provided through Google’s retrain.py.
+        </p>
+        <p>
+            In the case of food classes, the process of Transfer learning is used to apply the learning from a previous trained session to a new training session. In the Inception model, images are fed as input to different layers, until an output produces a label and classification percentage. These layers are different sets of abstractions mentioned above, such as edge and shape detection at the beginning, to more abstract layers as the layer get deeper. Food images will be retrained on the final layer to add to the overall knowledge held by the Inception model.
+        </p>
+        <p>
+            When retraining food image using Inception V3, a bottleneck directory is created to cache the output of the lower layers on physical disk. Once the bottlenecks are complete, the actual training and classification begins, which takes about thirty minutes to run. Each step is show at the command line, displaying increasing accuracy scores for each class.
+        </p>
+        <p>
+            To use the new retrained classifier to detect classes of food, a TensorFlow session is created. This session provides an environment to perform operations on the tensor data that was created. In the session, the SoftMax function Tensor is retrieved from the final layer of the model. The SoftMax function uses the final layer to map input data to probabilities of an expected output. When complete, a retrained model is produced, which can be used to make predictions on food images.
+        </p>
+
+        
+        
+        <h6 class="heading">Additional Trials</h6>
+        <p>
+            Seeing the results of the baseline trial, we conducted 4 additional trials with different combinations of layers before the SoftMax layer. All additional layers were added after the bottleneck layer was created, and before the soft-max layer. Based on previous research, it is suggested that soft-max is the ideal activation function for image classifications and therefore we thought it would be best to add other activation function layers before it. Each model contained a combination of 4 additional activation functions: Sigmoid, Relu, Leaky Relu and Tanh. As seen in the figure below, the red box depicts where exactly the additional activation layers are being inserted.
+        </p>
+        
+        <div class="image-div">
+            <img src="images/NutriSnap/tensorgraph.png">
         </div>
         
-        <h6 class="heading">Gouraud</h6>
-        <div>
-            <img class="images" src="images/CG4-LightingRendering/2.jpg">
-        </div>
         
-        <h6 class="heading">Phong</h6>
-        <div>
-            <img class="images" src="images/CG4-LightingRendering/3.jpg">
-        </div>
+        <h6 class="heading">Testing</h6>
 
-
+        <p>
+            To test our model, each output graph we created was tested with the exact same 7 pictures. For our model we primarily focused on noodle-based pictures because we noticed our model was confusing these classifications in our baseline trial. To standardize each trial, we increased the number of eval_steps, validation percentage, and training percentage in hopes of yielding better and more accurate results. In the figure below, we can see that by increasing the number of eval_steps, we were able to obtain much better accuracy.
+        </p>
        
+        <div class="image-div">
+            <img src="images/NutriSnap/accuracy_graph.png">
+        </div>
+        
+        
+        <h6 class="heading">Results</h6>
+        
+        <p>
+            After testing four different combinations of different activation functions, we found that Relu did a relatively better job in classifying foods.
+        </p>
+        
+        <div class="image-div">
+            <img src="images/NutriSnap/results.png">
+        </div>
+        
+        <h5 class="heading-section">Android Application and Nutritionix Client</h5>
+        <hr>
+        <p>
+            To show the model as a viable product, we modified a demo Android app made by Google. This app uses Neural Network models to make predictions with images taken by the integrated camera.
+        </p>
+        
+        <p>
+            To get the graph small enough to run in an Android app, we retrained our model using the Mobilenet pre-trained model. This model was used within the app, and connected to the Nurtitionix API, which enables us to grab nutritional info of the predicted food.
+        </p>
 
+        <div class="image-div">
+            <img src="images/NutriSnap/android_app.png">
+        </div>
+        
+        
+        <h5 class="heading-section">Conclusion</h5>
+        <hr>
+
+        <p>
+            Based on our results, we found that the model utilizing the Relu Activation Layer before the SoftMax had the best classification and accuracy. We found this model to be the best when it came to classifying our noodle-based food (i.e.: Spaghetti, Ramen, Pho etc.…). The second-best result would have been the original Soft Max layer (baseline). We felt that the baseline model was well suited for most image classifications. While working with our model to use with our Android application, we had to re-run the model with Mobile Net model instead of Google Inception V3. This allowed us to easily transform our model into a Tflite model which can be utilized in our application. We found that using Mobilenet had a much higher accuracy scores than Google’s inception V3, however there was a lot of misclassification. Going back to our original problem, we believe that we can accurately classify food, however, due to limitations, we would require more resources to perfect the model.
+        </p>
+        
+        
+        
+        <h5 class="heading-section">Check Out The Full Report</h5>
+        <hr>
+
+        <p>
+            <a href="#!">NutriSnap.pdf</a>
+        </p>
+
+        
         <!--Footer-->
         <div id="footer-placeholder"></div>
         <script>
