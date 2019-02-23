@@ -119,6 +119,12 @@
                 <td>The sum is over all light sources encountered so far in the scene.</td>
             </tr>
         </table>
+        
+        <h6 class="heading">Let's check it out in code...</h6>
+
+        <div class="image-div">
+            <img src="images/CG4-LightingRendering/lighting.png">
+        </div>
 
 
 
@@ -160,11 +166,6 @@
             For phong shading, first we find a normal at each vertex like we did with gouraud shading. Next we blerp the normals, the camera space points, and color &#40;if necessary&#41; across the polygon. At each pixel, used the blerped point, renormalized normal, and color&#40;kd&#41; in the lighting calculation to obtain a pixel value for the pixel.
         </p>
 
-        <h6 class="heading">Let's check it out in code...</h6>
-
-        <div class="image-div">
-            <img src="images/CG4-LightingRendering/lighting.png">
-        </div>
 
 
         <h5 class="heading-section">Testing Lighting and Shading with Different Render Styles</h5>
