@@ -205,33 +205,11 @@ img
     font-size: 12px;
 }
 
-
-/*VFX*/
-.vfx_title 
+.extra-space
 {
-    font-size: x-large;
-    margin: 2em auto auto auto;
+    margin: 1em auto 1em auto;
 }
 
-.vfx_caption 
-{
-    margin: 1em auto auto auto;
-}
-
-
-/*FAQ*/
-.faq-q
-{
-    color: dimgrey;
-    font-size: x-large;
-    margin: 2em auto auto auto;
-}
-
-.faq-a
-{
-    font-size: large;
-    margin: 1em auto auto auto;
-}
 
 /*FOOTER*/
 #footer-placeholder
