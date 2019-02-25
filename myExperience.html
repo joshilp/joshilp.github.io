@@ -31,8 +31,10 @@
 
         <!--Content-->
         <div class="title">
-            <p class="nospace">myExperience Usability Mockups</p>
+            <a class="nav-link fab fa-lg fa-github icon-cog" href="https://github.com/joshilp/UX-myExperience"></a>
+            <p class="nospace">myExperience UX Evaluation</p>
         </div>
+
         
         <h5 class="heading-section">Contributors</h5>
         <hr>
@@ -43,6 +45,182 @@
             <li>Priscilla Skylar Lee</li>
             <li>Brandon Wong</li>
         </ul>
+        
+        <h5 class="heading-section">myExperience</h5>
+        <hr>
+        <p>
+            myExperience is Simon Fraser University's web application that allows students to view and search for job, co-op, and event postings. Student's can then apply and keep track of their application through the system.
+        </p>
+        
+        <h5 class="heading-section">myExperience Heuristic Evaluation</h5>
+        <hr>
+        <p>
+            We'll conduct a Nielsen's heuristic evaluation on the overall usability of SFU's myExerience. For this evaluation, we'll assume that a desktop or laptop will be used to access the site.
+        </p>
+        
+        <p>
+            Over 20 usability problems will be identified, each of which will be ranked with a severity level. We'll also find examples of very good usability where a heuristic is met instead of being violated.
+        </p>
+        
+        <p>
+            Due to the size of myExerience, we'll limit the scope of this evaluation to the following screens:
+        </p>
+        
+        <ul>
+            <li>Homepage – Dashboard Tab</li>
+            <li>Register for an Event Dialog Box – Co-Op Events Calendar</li>
+            <li>Choose Event screen</li>
+            <li>Register for an Event screens</li>
+            <li>Search Postings Dialog Box</li>
+            <li>Career Job Postings</li>
+            <li>Search Results</li>
+            <li>View Job Detail</li>
+            <li>Apply for Job screen</li>
+            <li>Upload Documents - Application Requirements screen</li>
+            <li>Upload Document</li>
+        </ul>
+        
+        <p>
+            Here is an example of a <strong>Nielsen's heuristic violation</strong> found on myExperience:
+        </p>
+        
+
+        <h6 class="heading">Problem:</h6>
+        <p><i>NAME:</i> Cannot remove or edit filters.</p>
+        <p><i>LOCATION:</i> Events Calendar (Career and Co-Op) – List View | Filters</p>
+        <p><i>HEURISTIC:</i> User Control and Freedom</p>
+        <p><i>EVIDENCE OF ISSUE:</i></p>
+        
+        <p>
+            Screenshot 1:
+        </p>
+        <div class="image-div">
+            <img src="images/UX-myExperience/problem1a.png">
+        </div>
+        
+        <p>
+            Screenshot 2:
+        </p>
+        <div class="image-div">
+            <img src="images/UX-myExperience/problem1b.png">
+        </div>
+        
+        <p>
+            <i>DETAILED EXPLANATION:</i>
+        </p>
+        <p>
+            After a filter is applied, there is indicated way of undoing or editing the filter. There is no clear filter option in the List View (Screenshot 2), nor is there one in the Filters settings (Screenshot 1). The Clear Sort does not clear the filter.
+        </p>
+        
+        <p>
+            <i>SEVERITY OR BENEFIT (low, medium, high):</i> High
+        </p>
+        <P>Justification:</P>
+        <ul>
+            <li>High frequency. Occurs every time a filter is applied.</li>
+            <li>High impact. Users can become frustrated when applying the wrong filter.</li>
+            <li>High Persistence. Users will repeatedly encounter problem every time they filter.</li>
+        </ul>
+        
+        <p>
+            POSSIBLE SOLUTION AND/OR TRADE-OFFS:
+        </p>
+        <p>
+            Solution: Add a clear filters option.
+        </p>
+        <p>
+            Tradeoff: User may accidentally not want to clear all filters at once.
+        </p>
+        
+        <h6 class="heading">Check out the full myExperience Usability Inspection report:</h6>
+        <p>
+            <a href="https://github.com/joshilp/UX-myExperience/blob/master/myExperience_Usability_Inspection.pdf">myExperience_Usability_Inspection.pdf</a>
+        </p>
+
+
+        
+        
+       
+        <h5 class="heading-section">myExperience Usability Tested Mockups</h5>
+        <hr>
+        <p>
+            We'll create user interface mockups (desktop or mobile) for SFU's myExperience web application and conduct usability tests with 5-7 participants for each design.
+        </p>
+        
+        
+        <p>
+            Due to the size of myExerience, we'll limit the amount of mockups for these key screens:
+        </p>
+        
+        <ul>
+            <li>Homepage</li>
+            <li>Event registration (both before and after registration)</li>
+            <li>Career or Co-op job postings, including basic search</li>
+            <li>Search results</li>
+            <li>Job details</li>
+            <li>Job application form, including required documents</li>
+        </ul>
+        
+        <p>
+            Here is an example of a mockup design for the default <strong>Job Postings </strong>screen:
+        </p>
+        
+        <p>
+            The Job Postings section of the site is meant to parallel the Event Registration screen &#40;detailed in the full report&#41;. If a user wants to look through jobs, they can access the <strong>Postings</strong> section of the site by using the navigation bar at the top of any page, and clicking <i>POSTINGS</i>.
+        </p>
+        
+        
+        <h6 class="heading">Default Postings:</h6>
+        <div class="image-div">
+            <img src="images/UX-myExperience/mockup1.png">
+        </div>
+        <p>
+            The user has the option to <strong>favourite</strong> postings using the heart icon., which will turn coloured if selected. They can apply filters including <strong>Recently Searched</strong>, and <strong>Favourites</strong> which gives freedom to a user in terms of searching for job postings. Users have an option to <strong>clear all filters</strong>, and <strong>sort</strong> postings by Deadline, Title, etc.
+        </p>
+        <p>
+            Users can type in a query in the <strong>Search</strong> bar which would result in a similar list relevant to the query.
+        </p>
+        <p>
+            To keep the design consistent with other design mockups and also with the real world, the top right section is reserved for individual content including “<strong>Account</strong>”, “<strong>Inbox</strong>”, and “<strong>Notifications</strong>”. A status text field shows “<strong>Viewed</strong>” for postings that have been previously viewed. The user has the option to see more information on each event using the drop down <strong>arrows</strong> and in full detail by selecting <strong>View Posting</strong>.
+        </p>
+        
+        
+        <h6 class="heading">Search Results After Application:</h6>
+        <div class="image-div">
+            <img src="images/UX-myExperience/mockup2.png">
+        </div>
+        <p>
+            A status text field shows “<strong>Applied</strong>” for postings that have been already applied to.
+        </p>
+        
+        
+        <h6 class="heading">Search Results:</h6>
+        <p>
+            Result: Google
+        </p>
+        <div class="image-div">
+            <img src="images/UX-myExperience/mockup3.png">
+        </div>
+        <p>
+            A user can further filter results by using the search bar. For example, by typing <i>google</i> into the search field, only jobs with the google keyword are shown.
+        </p>
+        
+        
+        <h6 class="heading">Result Expanded:</h6>
+        <div class="image-div">
+            <img src="images/UX-myExperience/mockup4.png">
+        </div>
+        <p>
+            By using the drop down <strong>arrows</strong>, users are able to see more information that can be valuable to look at from a glance. For example, the number of openings, views, applications, location, etc.
+        </p>
+        
+        
+        <h6 class="heading">Check out the full myExperience Usability Tested Mockups report:</h6>
+        <p>
+            <a href="https://github.com/joshilp/UX-myExperience/blob/master/myExperience_Usability_Mockups.pdf">myExperience_Usability_Mockups.pdf</a>
+        </p>
+        
+        
         
         <!--Footer-->
         <div id="footer-placeholder"></div>

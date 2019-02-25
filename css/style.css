@@ -17,10 +17,16 @@ a:hover
     text-decoration: none;
 }
 
-p, ul, ol
+p, ol
 {
     color: dimgray;
     margin: 0.5em auto 0.5em auto;
+}
+
+ul
+{
+    color: dimgray;
+    margin: 1em auto 1em auto;
 }
 
 .nospace
@@ -28,14 +34,6 @@ p, ul, ol
     color: dimgray;
     margin: auto auto auto auto;
 }
-
-/*
-ul, ol
-{
-    color: dimgray;
-    margin: 1em auto auto 1em;
-}
-*/
 
 .bg-color 
 {
