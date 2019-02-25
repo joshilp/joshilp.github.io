@@ -52,7 +52,7 @@
         
         
         
-        <h5 class="heading-section">Contributors</h5>
+        <h5>Contributors</h5>
         <hr>
         <ul>
             <li>Joshil Patel</li>
@@ -61,13 +61,13 @@
         </ul>
         
 
-        <h5 class="heading-section">Problem</h5>
+        <h5>Problem</h5>
         <hr>
         <p>
             The goal of this project is to utilize transfer learning and retrain Google’s Inception V3 model to accurately classify images of food and produce the corresponding nutritional information. The idea behind this project is to modify TensorFlow's retrain.py by adding multiple activation layers before the final soft-max layer, in hopes of increasing accuracy and stability of the model.
         </p>
 
-        <h5 class="heading-section">Data: Gathering &amp; Cleaning</h5>
+        <h5>Data: Gathering &amp; Cleaning</h5>
         <hr>
         
         <p>
@@ -81,14 +81,14 @@
         </p>
         
         
-        <h5 class="heading-section">Techniques &amp; Manipulation</h5>
+        <h5>Techniques &amp; Manipulation</h5>
         <hr>
         <p>
             One of the goals of this project is to utilize transfer learning and retrain Google’s Inception V3 neural network. To accomplish this, we used TensorFlow retrain.py and label_image.py scripts. The retrain.py script allowed us to train the final SoftMax layer to our specific food classes, while label_image.py allows us to feed our model an image and test its results. We later imported the logic of label_image.py to be able to not only test the model but to also work with our Nutritionix Client to obtain nutritional information. 
         </p>
         
         
-        <h6 class="heading">Retrain.py</h6>
+        <h6>Retrain.py</h6>
         
         <p>
             Training image recognition models requires large computing power, thus transfer learning is used to drastically reduce the amount of required computing power.
@@ -108,7 +108,7 @@
 
         
         
-        <h6 class="heading">Additional Trials</h6>
+        <h6>Additional Trials</h6>
         <p>
             Seeing the results of the baseline trial, we conducted 4 additional trials with different combinations of layers before the SoftMax layer. All additional layers were added after the bottleneck layer was created, and before the soft-max layer. Based on previous research, it is suggested that soft-max is the ideal activation function for image classifications and therefore we thought it would be best to add other activation function layers before it. Each model contained a combination of 4 additional activation functions: Sigmoid, Relu, Leaky Relu and Tanh. As seen in the figure below, the red box depicts where exactly the additional activation layers are being inserted.
         </p>
@@ -118,7 +118,7 @@
         </div>
         
         
-        <h6 class="heading">Testing</h6>
+        <h6>Testing</h6>
 
         <p>
             To test our model, each output graph we created was tested with the exact same 7 pictures. For our model we primarily focused on noodle-based pictures because we noticed our model was confusing these classifications in our baseline trial. To standardize each trial, we increased the number of eval_steps, validation percentage, and training percentage in hopes of yielding better and more accurate results. In the figure below, we can see that by increasing the number of eval_steps, we were able to obtain much better accuracy.
@@ -129,7 +129,7 @@
         </div>
         
         
-        <h6 class="heading">Results</h6>
+        <h6>Results</h6>
         
         <p>
             After testing four different combinations of different activation functions, we found that Relu did a relatively better job in classifying foods.
@@ -139,7 +139,7 @@
             <img src="images/NutriSnap/results.png">
         </div>
         
-        <h5 class="heading-section">Android Application and Nutritionix Client</h5>
+        <h5>Android Application and Nutritionix Client</h5>
         <hr>
         <p>
             To show the model as a viable product, we modified a demo Android app made by Google. This app uses Neural Network models to make predictions with images taken by the integrated camera.
@@ -154,7 +154,7 @@
         </div>
         
         
-        <h5 class="heading-section">Conclusion</h5>
+        <h5>Conclusion</h5>
         <hr>
 
         <p>
@@ -163,7 +163,7 @@
         
         
         
-        <h5 class="heading-section">Check Out The Full Report</h5>
+        <h5>Check Out The Full Report</h5>
         <hr>
 
         <p>

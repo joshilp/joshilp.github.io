@@ -51,7 +51,7 @@
         </div>
 
 
-        <h5 class="heading-section">Color Interpolation</h5>
+        <h5>Color Interpolation</h5>
         <hr>
         <p>
             Before we add depth, we need to modify our DDA Line Renderer so that it can interpolate between different colors between vertices.
@@ -69,7 +69,7 @@
             <img src="images/CG2-ZDepth/ColorPolygonRenderer.png">
         </div>
         
-        <h5 class="heading-section">Adding Depth</h5>
+        <h5>Adding Depth</h5>
         <hr>
         <p>
             Now we need to create a Z-Buffer with all values set to -200. This is also known as the clipping plane. Whenever we write a pixel (x, y) with world-space coordinate z, we must first compare z to the Z-Buffer value at x and y. If z > Z-Buffer(x, y) then we write the pixel, and write the z value to the Z-Buffer. Otherwise, we don’t write the pixel.
@@ -79,7 +79,7 @@
             <img src="images/CG2-ZDepth/ZBufferingDrawable.png">
         </div>
         
-        <h5 class="heading-section">Simplifying Things...</h5>
+        <h5>Simplifying Things...</h5>
         <hr>
         <p>
             Now that we can draw polygons in depth, drawing 3D shapes such as cubes can become tedious, especially if we want to place them in different places around the screen. We can use .simp files to make things a little easier. Simp files allow you to define shapes by adding coordinates of different face. If you add the right cooridates, as a whole you'll have a simple shape. Here's an example of cube.simp:
@@ -106,20 +106,20 @@
 
 
 
-        <h5 class="heading-section">Testing Interpolation and Drawing Shapes in Depth</h5>
+        <h5>Testing Interpolation and Drawing Shapes in Depth</h5>
         <hr>
         <p>
             Now that we can interpolate, let's draw some stuff where vertices of a polygon are of different colors.
         </p>
 
 
-        <h6 class="heading">Interpolating Lines</h6>
+        <h6>Interpolating Lines</h6>
 
         <div class="image-div">
             <img src="images/CG2-ZDepth/1.jpg">
         </div>
 
-        <h6 class="heading">Interpolating Polygons</h6>
+        <h6>Interpolating Polygons</h6>
 
         <div class="image-div">
             <img src="images/CG2-ZDepth/2.jpg">
@@ -129,7 +129,7 @@
             We can also render polygons at different Z-Depths.
         </p>
 
-        <h6 class="heading">Z-Buffered Polygons</h6>
+        <h6>Z-Buffered Polygons</h6>
 
         <div class="image-div">
             <img src="images/CG2-ZDepth/3.jpg">
@@ -139,7 +139,7 @@
             Let's use simp files to create interesting shapes and designs.
         </p>
 
-        <h6 class="heading">Multiple Cubes</h6>
+        <h6>Multiple Cubes</h6>
         
         <p>
             Some cubes pass the near clipping plane, meaning you'll see some "holes" in the cube. The cubes rendered towards the far clipping plane disappear into the depth of the screen.
@@ -149,7 +149,7 @@
             <img src="images/CG2-ZDepth/4.jpg">
         </div>
 
-        <h6 class="heading">Playing Around With Different Shapes, Translations, Scale, and Depth.</h6>
+        <h6>Playing Around With Different Shapes, Translations, Scale, and Depth.</h6>
 
         <div class="image-div">
             <img src="images/CG2-ZDepth/5.jpg">
@@ -166,7 +166,7 @@
 
 
 
-        <h5 class="heading-section">Program In Action...</h5>
+        <h5>Program In Action...</h5>
         <hr>
         <div class="image-div">
             <img src="images/CG2-ZDepth/cg2.gif">

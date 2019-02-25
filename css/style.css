@@ -29,6 +29,12 @@ ul
     margin: 1em auto 1em auto;
 }
 
+h5, h6
+{
+    color: dimgray;
+    margin: 2em auto 0.5em auto;
+}
+
 .nospace
 {
     color: dimgray;
@@ -51,18 +57,6 @@ ul
     margin: 2em auto 2em auto;
     text-align: center;
     color: dimgrey;
-}
-
-.heading-section
-{
-    margin: 2em auto auto auto;
-    color: dimgray;
-}
-
-.heading
-{
-    margin: 1em auto 0.5em auto;
-    color: dimgray;
 }
 
 .text-left
@@ -186,8 +180,8 @@ img
 
 .thumb-heading
 {
-    margin: 1em auto 0.5em auto;
-/*    color: dimgray;*/
+    margin: 0.5em auto 0.5em auto;
+    color: dodgerblue;
 }
 
 .caption 

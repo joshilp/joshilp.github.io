@@ -51,7 +51,7 @@
         </div>
 
 
-        <h5 class="heading-section">Adding Commands</h5>
+        <h5>Adding Commands</h5>
         <hr>
         <p>
             The .simp files we read in will now contain new information, including light color, surface color, specular exponent, scalar, and shading style.
@@ -64,7 +64,7 @@
         </p>
 
 
-        <h5 class="heading-section">Lighting Calculation</h5>
+        <h5>Lighting Calculation</h5>
         <hr>
         <p class="math">
             I<sub>&lambda;</sub> &#61; k<sub>d&lambda;</sub> I<sub>a&lambda;</sub> &#43; &sum;<sub>i</sub> I<sub>i&lambda;</sub> f<sub>att,i</sub> &#40; k<sub>d&lambda;</sub> &#40; N &#8226; L<sub>t</sub> &#41; &#43; k<sub>s</sub> &#40; V &#8226; R<sub>t</sub> &#41; <sup>p</sup> &#41;
@@ -120,7 +120,7 @@
             </tr>
         </table>
         
-        <h6 class="heading">Let's check it out in code...</h6>
+        <h6>Let's check it out in code...</h6>
 
         <div class="image-div">
             <img src="images/CG4-LightingRendering/lighting.png">
@@ -128,7 +128,7 @@
 
 
 
-        <h5 class="heading-section">Shading Style</h5>
+        <h5>Shading Style</h5>
         <hr>
         <p>
             There are types of rendering styles:
@@ -139,7 +139,7 @@
             <li>Phong</li>
         </ul>
 
-        <h6 class="heading">Flat</h6>
+        <h6>Flat</h6>
         <p>
             In flat shading, we averages the vertices of a polygon to find a center point on the polyogn. If there are normals present at the vertices, then the renormalized average of these normals is used for the normal for the lighting calculation:
         </p>
@@ -156,70 +156,70 @@
             Then using the center point with the normal, we apply the lighting model to get a lighting value (RGB vector). This value is used as the lighting-calculation color for all pixels in the polygon.
         </p>
 
-        <h6 class="heading">Gouraud</h6>
+        <h6>Gouraud</h6>
         <p>
             For gouraud shading, we find a normal at each vertex of a polygon. If the vertex is from an obj file and has a specified normal, then we'll use that. Otherwise we use the face normal at every vertex. Then at each vertex we calculate the lighting value using the lighting equation above. Then blerp these lighting values across the polygon, using the blerped value as the pixel value at each pixel.
         </p>
 
-        <h6 class="heading">Phong</h6>
+        <h6>Phong</h6>
         <p>
             For phong shading, first we find a normal at each vertex like we did with gouraud shading. Next we blerp the normals, the camera space points, and color &#40;if necessary&#41; across the polygon. At each pixel, used the blerped point, renormalized normal, and color&#40;kd&#41; in the lighting calculation to obtain a pixel value for the pixel.
         </p>
         
-        <h6 class="heading">Let's check it out in code...</h6>
+        <h6>Let's check it out in code...</h6>
         <p>
             The code is pretty long here, so here's the link to <a href="https://github.com/joshilp/CG4-LightingRendering/blob/master/src/client/interpreter/SimpInterpreter.java">SimpInterpreter.java</a>, where the code is located.
         </p>
 
-        <h5 class="heading-section">Testing Lighting and Shading with Different Render Styles</h5>
+        <h5>Testing Lighting and Shading with Different Render Styles</h5>
         <hr>
 
-        <h6 class="heading">Flat:</h6>
+        <h6>Flat:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/1.jpg">
         </div>
         
-        <h6 class="heading">Gouraud:</h6>
+        <h6>Gouraud:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/2.jpg">
         </div>
         
-        <h6 class="heading">Phong:</h6>
+        <h6>Phong:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/3.jpg">
         </div>
         
-        <h6 class="heading">Flat:</h6>
+        <h6>Flat:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/4.jpg">
         </div>
         
-        <h6 class="heading">Gouraud:</h6>
+        <h6>Gouraud:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/5.jpg">
         </div>
         
-        <h6 class="heading">Phong:</h6>
+        <h6>Phong:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/6.jpg">
         </div>
         
-        <h6 class="heading">Flat:</h6>
+        <h6>Flat:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/7.jpg">
         </div>
         
-        <h6 class="heading">Gouraud:</h6>
+        <h6>Gouraud:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/8.jpg">
         </div>
         
-        <h6 class="heading">Phong:</h6>
+        <h6>Phong:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/9.jpg">
         </div>
         
-        <h6 class="heading">More Objects Rendered With Phong Shading:</h6>
+        <h6>More Objects Rendered With Phong Shading:</h6>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/10.jpg">
         </div>
@@ -254,7 +254,7 @@
 
 
 
-        <h5 class="heading-section">Program In Action...</h5>
+        <h5>Program In Action...</h5>
         <hr>
         <div class="image-div">
             <img src="images/CG4-LightingRendering/cg4.gif">

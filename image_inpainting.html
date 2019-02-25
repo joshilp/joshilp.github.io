@@ -62,7 +62,7 @@
         
         
 
-        <h5 class="heading-section">Contributors</h5>
+        <h5>Contributors</h5>
         <hr>
         <ul>
             <li>Joshil Patel</li>
@@ -75,42 +75,42 @@
         
 
 
-        <h5 class="heading-section">Problem &amp; Objective</h5>
+        <h5>Problem &amp; Objective</h5>
         <hr>
 
-        <h6 class="heading">Problem Description</h6>
+        <h6>Problem Description</h6>
         <p>
             Individual shots in a movie require a great deal of visual effects (VFX) work before the final film is released on the big screen. One tedious and time consuming task involves artists removing or replacing objects in a scene, which is known in the industry as painting. The majority of shots in a film require paint work, resulting in a bottleneck in the VFX pipeline and therefore increasing the risk of late delivery.
         </p>
 
-        <h6 class="heading">Painting Process</h6>
+        <h6>Painting Process</h6>
         <ul>
             <li>create a mask of the object </li>
             <li>stencil out the image using that mask</li>
             <li>paint in the hole using various VFX techniques</li>
         </ul>
 
-        <h6 class="heading">Objective</h6>
+        <h6>Objective</h6>
         <p>
             To automate the painting process using machine learning, thus removing or reducing the bottleneck in the VFX pipeline.
         </p>
         
         
         
-        <h5 class="heading-section">Approach</h5>
+        <h5>Approach</h5>
         <hr>
         
-        <h6 class="heading">Convolutional Layer Input</h6>
+        <h6>Convolutional Layer Input</h6>
         <p>
             Let 𝑾<sup>𝑇</sup> be the weights for the convolution filter and 𝑏 be the corresponding bias. 𝑿 are the pixels values for the current convolution window and 𝑴 is the corresponding binary mask.
         </p>
         
-        <h6 class="heading">Mask Updating</h6>
+        <h6>Mask Updating</h6>
         <p>
             The mask is updated after each partial convolution. If the convolution was able to condition its output on at least one valid input value, then remove the mask for that location.
         </p>
         
-        <h6 class="heading">Loss Function</h6>
+        <h6>Loss Function</h6>
 
         <p class="math">
             𝓛<sub>𝑡𝑜𝑡𝑎𝑙</sub> = 𝓛<sub>𝑣𝑎𝑙𝑖𝑑</sub> + 6<sub>𝓛ℎ𝑜𝑙𝑒</sub> + 0.05<sub>𝓛𝑝𝑒𝑟𝑐𝑒𝑝𝑡𝑢𝑎𝑙</sub> + 120 𝓛<sub>𝑠𝑡𝑦𝑙𝑒<sub>𝑜𝑢𝑡</sub></sub> + 𝓛<sub>𝑠𝑡𝑦𝑙𝑒<sub>𝑐𝑜𝑚𝑝</sub></sub> + 0.1𝓛<sub>𝑡v</sub>
@@ -120,7 +120,7 @@
         
         
         
-        <h5 class="heading-section">U-Net Architecure</h5>
+        <h5>U-Net Architecure</h5>
         <hr>
         
         <div>
@@ -129,7 +129,7 @@
         
         
                 
-        <h5 class="heading-section">Maybe things make more sense in code...</h5>
+        <h5>Maybe things make more sense in code...</h5>
         <hr>
         
         <pre>
@@ -196,7 +196,7 @@
         
 
         
-        <h5 class="heading-section">Prediction Results</h5>
+        <h5>Prediction Results</h5>
         <hr>
         <div class="embed-responsive embed-responsive-16by9">
             <iframe src="https://player.vimeo.com/video/310712744" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
@@ -205,22 +205,22 @@
 
 
 
-        <h5 class="heading-section">Suggested Improvements</h5>
+        <h5>Suggested Improvements</h5>
         <hr>
         
-        <h6 class="heading">More Data</h6>
+        <h6>More Data</h6>
         <p>
             Our network was trained on ImageNet data, whereas the original authors trained on multiple datasets for best results. Therefore more data and training would help. In terms of VFX production, adding frames manually painted by artists to the end of the training set could provide added assistance in specializing the net for use on the shot.
         </p>
         
-        <h6 class="heading">Modifying the Network</h6>
+        <h6>Modifying the Network</h6>
         <p>
             This CNN only looks at each image in isolation. Combining this network with an LSTM may remove the “flickering” present when the images are shown in sequence. Furthermore, this network only accepts low resolution images. Modifying the network to accept higher resolutions may result in better predictions, though will also require longer training time.
         </p>
         
         
         
-        <h5 class="heading-section">Check Out The Full Report</h5>
+        <h5>Check Out The Full Report</h5>
         <hr>
 
         <p>
