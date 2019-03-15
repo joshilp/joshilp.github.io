@@ -3,5 +3,6 @@
 # 
 
 <p align="center">
-Check out my portfolio at [www.joshpatel.ca](www.joshpatel.ca) for highlights of some of my projects listed on Github.
+Check out my portfolio at <a href="http://joshpatel.ca">www.joshpatel.ca</a> for highlights of some of my projects listed on Github.
 <p>
+

@@ -151,6 +151,12 @@ img
     align-content: center;
 }
 
+.logo2
+{
+    max-height: 30px;
+    align-content: center;
+}
+
 .nav-item
 {
     margin: auto auto auto auto;
