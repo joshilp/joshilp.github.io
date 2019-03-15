@@ -2,4 +2,6 @@
 
 # 
 
-Check out my portfolio at [www.joshpatel.ca](www.joshpatel.ca) for highlights of some of my projects listed on my Github.
+<p align="center">
+Check out my portfolio at [www.joshpatel.ca](www.joshpatel.ca) for highlights of some of my projects listed on Github.
+<p>
