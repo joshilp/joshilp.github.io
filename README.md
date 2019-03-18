@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/joshilp/joshilp.github.io/blob/master/images/logo.jpg?raw=true" width="500"/></p>
+<p align="center"><img src="https://github.com/joshilp/joshilp.github.io/blob/master/images/logo2.jpg?raw=true" width="500"/></p>
 
 # 
 
