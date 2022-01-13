@@ -1,279 +1,233 @@
 /*BODY*/
 
-body
-{
-    background-color: none;
+body {
+  background-color: none;
 }
 
 /* unvisited link */
-a
-{
+a {
   color: dodgerblue;
 }
 
-a:hover 
-{
-    color: black;
-    text-decoration: none;
+a:hover {
+  color: black;
+  text-decoration: none;
 }
 
-p, ol
-{
-    color: dimgray;
-    margin: 0.5em auto 0.5em auto;
+p,
+ol {
+  color: dimgray;
+  margin: 0.5em auto 0.5em auto;
 }
 
-ul
-{
-    color: dimgray;
-    margin: 1em auto 1em auto;
+ul {
+  color: dimgray;
+  margin: 1em auto 1em auto;
 }
 
-h5, h6
-{
-    color: dimgray;
-    margin: 2em auto 0.5em auto;
+h5,
+h6 {
+  color: dimgray;
+  margin: 2em auto 0.5em auto;
 }
 
-h6:hover
-{
-    color: black;
-    text-decoration: none;
+h6:hover {
+  color: black;
+  text-decoration: none;
 }
 
-.nospace
-{
-    color: dimgray;
-    margin: auto auto auto auto;
+.nospace {
+  color: dimgray;
+  margin: auto auto auto auto;
 }
 
-.bg-color 
-{
-    color: #FFFFFF;
+.bg-color {
+  color: #ffffff;
 }
 
-.container 
-{
-    margin: 3em auto auto auto;
+.container {
+  margin: 3em auto auto auto;
 }
 
-.title
-{
-    font-size: x-large;
-    margin: 2em auto 2em auto;
-    text-align: center;
-    color: dimgrey;
+.title {
+  font-size: x-large;
+  margin: 2em auto 2em auto;
+  text-align: center;
+  color: dimgrey;
 }
 
-.center
-{
-    text-align: center;
+.center {
+  text-align: center;
 }
 
-.text-left
-{
-/*    margin-right: 0;*/
-    float: left;
+.text-left {
+  /*    margin-right: 0;*/
+  float: left;
 }
 
-.text-right
-{
-/*    margin-right: 0;*/
-    float: right;
+.text-right {
+  /*    margin-right: 0;*/
+  float: right;
 }
 
-.math
-{
-    text-align: center;
-    font-size: 1.2em;
-    margin: 0.5em auto 0.5em auto;
+.math {
+  text-align: center;
+  font-size: 1.2em;
+  margin: 0.5em auto 0.5em auto;
 }
 
-.prev-next
-{
-    height: 2em;
+.prev-next {
+  height: 2em;
 }
 
 /*MEDIA*/
-.vid
-{
-    align-content: center;
-    margin: auto auto auto auto;
+.vid {
+  align-content: center;
+  margin: auto auto auto auto;
 }
 
-.image-div
-{
-    width: 100%;  
-    height: auto;
-    text-align: center;
-    margin: 2em auto 2em auto;
+.image-div {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin: 2em auto 2em auto;
 }
 
-img
-{
-    max-width: 100%;
+img {
+  max-width: 100%;
 }
-
-
 
 /*FONTAWESOME*/
-.fab
-{
-    position: relative;
-    bottom: 0em;
+.fab {
+  position: relative;
+  bottom: 0em;
 }
 
-.icon-cog
-{
-  color : dodgerblue;
+.icon-cog {
+  color: dodgerblue;
 }
-
 
 /*NAVIGATION*/
-.navbar 
-{
-    margin: auto auto 1em auto;
+.navbar {
+  margin: auto auto 1em auto;
 }
 
-.navbar-brand
-{
-    font-size: xx-large;
+.navbar-brand {
+  font-size: xx-large;
 }
 
-.navbar-nav 
-{
-    margin: auto 0em 0em auto;
+.navbar-nav {
+  margin: auto 0em 0em auto;
 }
 
-.logo 
-{
-    max-height: 75px;
-    align-content: center;
+.logo {
+  max-height: 75px;
+  align-content: center;
 }
 
-.logo2
-{
-    max-height: 30px;
-    align-content: center;
+.logo2 {
+  max-height: 30px;
+  align-content: center;
 }
 
-.nav-item
-{
-    margin: auto auto auto auto;
+.nav-item {
+  margin: auto auto auto auto;
 }
 
-.nav-hr
-{
-    margin: auto auto 2em auto;
+.nav-hr {
+  margin: auto auto 2em auto;
 }
 
-.nav-link
-{
-    
+.nav-link {
 }
-
 
 /*THUMBNAILS*/
-.row>div
-{
-    background-color: #FFFFFF;
-    background-clip: content-box;
-    min-height: 100px;
+.row > div {
+  background-color: #ffffff;
+  background-clip: content-box;
+  min-height: 100px;
 }
 
-.row 
-{
-    border: 1px #ccc;
-    border-left: 0;
-    border-right: 0;
+.row {
+  border: 1px #ccc;
+  border-left: 0;
+  border-right: 0;
 }
 
-.hr 
-{
-    color:  #FF0000;
-    margin: 3em auto 3em auto;
+.hr {
+  color: #ff0000;
+  margin: 3em auto 3em auto;
 }
 
-.img-thumbnail 
-{
-    margin: 1em auto auto auto;
-    align-content: center;
+.img-thumbnail {
+  margin: 1em auto auto auto;
+  align-content: center;
 }
 
-.thumb-heading
-{
-    margin: 0.5em auto 0.5em auto;
-    color: dodgerblue;
+.thumb-heading {
+  margin: 0.5em auto 0.5em auto;
+  color: dodgerblue;
 }
 
-.caption 
-{
-    margin: auto auto 4em auto;
-    text-align: left;
+.caption {
+  margin: auto auto 4em auto;
+  text-align: left;
 }
 
-.fig-caption 
-{
-    margin: auto auto 4em auto;
-    text-align: center;
-    font-size: 12px;
+.fig-caption {
+  margin: auto auto 4em auto;
+  text-align: center;
+  font-size: 12px;
 }
 
-.extra-space
-{
-    margin: 1em auto 1em auto;
+.extra-space {
+  margin: 1em auto 1em auto;
 }
-
 
 /*FOOTER*/
-#footer-placeholder
-{
-    margin: auto auto auto auto;
+#footer-placeholder {
+  margin: auto auto auto auto;
 }
 
-.page-footer
-{
-    margin: 5em auto 0em auto;
-    
+.page-footer {
+  margin: 5em auto 0em auto;
 }
 
-.footer-title
-{
-    margin: 1em auto 0.5em auto;
+.footer-title {
+  margin: 1em auto 0.5em auto;
 }
 
-.footer-hr
-{
-    margin: 5em auto auto auto;
+.footer-hr {
+  margin: 5em auto auto auto;
 }
 
-.footer-link
-{
-    margin: auto auto 5px auto;
+.footer-link {
+  margin: auto auto 5px auto;
 }
-
 
 /*TABLES*/
-table 
-{
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1em auto 1em auto;
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em auto 1em auto;
 }
 
-th
-{
-    margin: 1em auto 0.5em auto;
-    color: dimgray;
+th {
+  margin: 1em auto 0.5em auto;
+  color: dimgray;
 }
 
 tr {
-    border-bottom: 1px dotted #ccc;
+  border-bottom: 1px dotted #ccc;
 }
 
-.table-var
-{
-    max-width:100%;
-    white-space:nowrap;
-    padding-right: 2em;
+.table-var {
+  max-width: 100%;
+  white-space: nowrap;
+  padding-right: 2em;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
